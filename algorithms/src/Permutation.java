@@ -6,23 +6,20 @@
 public class Permutation {
 
     // Swapping 2 elements in array
-    static void swap(char[] chars, int pos1, int pos2) {
+    static void swap(char[] chars, int pos1) {
+        int pos2 = pos1 - 1;
         char temp = chars[pos1];
         chars[pos1] = chars[pos2];
         chars[pos2] = temp;
         return;
     }
 
-    static void permutation(char[] chars, int depth, int pointer) {
-        if (depth > 1) {
-            permutation(chars, depth - 1, pointer);
+    static void permutation(char[] chars, int pointer) {
+        if (pointer > 0) {
+            permutation(chars, pointer - 1);
+            swap(chars, pointer);
+            System.out.println(chars);
         }
-
-        System.out.println(chars);
-
-        int pos1 = 0; //(pointer > 0) ? 0 : 1;
-        int pos2 = 1; //(pointer > 1) ? 1 : 2;
-        swap(chars, pos1, pos2);
 
 
         return;
@@ -31,14 +28,15 @@ public class Permutation {
     public static void main(String[] args) {
 
 //        String string = "algorithm";
-        String string = "123456789";
+        String string = "012";
         char[] chars = string.toCharArray();
         char[] chars2 = chars.clone();
 
         int depth = 2;
         int pointer = 2;
 
-        permutation(chars, depth, pointer);
+        System.out.println(chars);
+        permutation(chars, pointer);
 //        int pointEnd = chars.length - 1;
 //
 ////        System.out.println(string);

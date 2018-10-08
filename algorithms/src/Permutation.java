@@ -1,51 +1,53 @@
-/**
- * Created by Intellij IDEA.
- * User: Jaroslav Frunt
- * Date: 04.10.2018
- */
-public class Permutation {
-
-    // Swapping 2 elements in array
-    static void swap(char[] chars, int pos1) {
-        int pos2 = pos1 - 1;
-        char temp = chars[pos1];
-        chars[pos1] = chars[pos2];
-        chars[pos2] = temp;
-        return;
+// Java program to print all permutations of a
+// given string.
+public class Permutation
+{
+    public static void main(String[] args)
+    {
+        String str = "ABC";
+        int n = str.length();
+        Permutation permutation = new Permutation();
+        permutation.permute(str, 0, n-1);
     }
 
-    static void permutation(char[] chars, int pointer) {
-        if (pointer > 0) {
-            permutation(chars, pointer - 1);
-            swap(chars, pointer);
-            System.out.println(chars);
+    /**
+     * permutation function
+     * @param str string to calculate permutation for
+     * @param l starting index
+     * @param r end index
+     */
+    private void permute(String str, int l, int r)
+    {
+        if (l == r)
+            System.out.println(str);
+        else
+        {
+            for (int i = l; i <= r; i++)
+            {
+                str = swap(str,l,i);
+                permute(str, l+1, r);
+                str = swap(str,l,i);
+            }
         }
-
-
-        return;
     }
 
-    public static void main(String[] args) {
-
-//        String string = "algorithm";
-        String string = "012";
-        char[] chars = string.toCharArray();
-        char[] chars2 = chars.clone();
-
-        int depth = 2;
-        int pointer = 2;
-
-        System.out.println(chars);
-        permutation(chars, pointer);
-//        int pointEnd = chars.length - 1;
-//
-////        System.out.println(string);
-//
-//        System.out.println(String.valueOf(chars));
-//        for (int i = 0; i < pointEnd; i++) {
-//            swap(chars, pointer++, pointer);
-//            System.out.println(String.valueOf(chars));
-//        }
+    /**
+     * Swap Characters at position
+     * @param a string value
+     * @param i position 1
+     * @param j position 2
+     * @return swapped string
+     */
+    public String swap(String a, int i, int j)
+    {
+        char temp;
+        char[] charArray = a.toCharArray();
+        temp = charArray[i] ;
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return String.valueOf(charArray);
     }
 
 }
+
+// This code is contributed by Mihir Joshi

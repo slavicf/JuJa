@@ -1,3 +1,5 @@
+package permutation;
+
 /**
  * Created by Intellij IDEA.
  * User: Jaroslav Frunt
